@@ -1,4 +1,5 @@
 import { View, Text, XStack, YStack, Square } from 'tamagui';
+import { COLORS } from '../constants/colors';
 
 const WORD_LENGTH = 5;
 const MAX_ATTEMPTS = 6;
@@ -23,14 +24,12 @@ const Grid = ({ guesses, currentGuess, targetWord, getLetterStatus }) => {
                     height={60}
                     borderWidth={2}
                     borderRadius="$2"
-                    borderColor={status === 'empty' ? '$color6' : 'transparent'}
-                    backgroundColor={
-                      status === 'correct' ? '$green7' : status === 'present' ? '$yellow7' : status === 'absent' ? '$color8' : '$color3'
-                    }
+                    borderColor={status === 'empty' ? COLORS.emptyBorder : 'transparent'}
+                    backgroundColor={COLORS[status]}
                     alignItems="center"
                     justifyContent="center"
                   >
-                    <Text fontSize={24} fontWeight="bold" color="$color12">
+                    <Text fontSize={24} fontWeight="bold" color={COLORS.text}>
                       {guessLetter}
                     </Text>
                   </Square>

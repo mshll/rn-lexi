@@ -1,27 +1,23 @@
 {
   "expo": {
-    "name": "Jumble",
-    "slug": "jumble",
+    "name": "Lexi",
+    "slug": "lexi",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
-      "backgroundColor": "#9FCCAE"
+      "backgroundColor": "#050505"
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.meshall.jumble"
+      "bundleIdentifier": "com.meshall.lexi"
     },
     "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#9FCCAE"
-      },
-      "package": "com.meshall.jumble"
+      "package": "com.meshall.lexi"
     },
     "web": {
       "favicon": "./assets/favicon.png"

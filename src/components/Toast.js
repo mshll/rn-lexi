@@ -1,9 +1,16 @@
 import { Text, YStack, AnimatePresence } from 'tamagui';
+import { useEffect, useState } from 'react';
 
-const Toast = ({ message, show }) => {
+const Toast = ({ message, show, persistent = false }) => {
+  const [visible, setVisible] = useState(show);
+
+  useEffect(() => {
+    setVisible(show);
+  }, [show]);
+
   return (
     <AnimatePresence>
-      {show && (
+      {(persistent ? show : visible) && (
         <YStack
           animation="quick"
           enterStyle={{ opacity: 0, scale: 0.9 }}
