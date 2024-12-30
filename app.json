@@ -1,0 +1,31 @@
+{
+  "expo": {
+    "name": "Jumble",
+    "slug": "jumble",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#9FCCAE"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.meshall.jumble"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#9FCCAE"
+      },
+      "package": "com.meshall.jumble"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "jsEngine": "jsc"
+  }
+}
