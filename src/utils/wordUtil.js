@@ -68,4 +68,28 @@ const isWordValid = (word) => {
   return five_char_words.includes(word);
 };
 
-export { getWordOfTheDay, getDayDiff as getDayOfYear, isCharInWord, isWordValid };
+const winText = [
+  'Splendid!',
+  'Nicely Done!',
+  'Brilliant!',
+  'Fantastic!',
+  'Amazing!',
+  'Great Job!',
+  'Well Done!',
+  'Excellent!',
+  'Outstanding!',
+  'Superb!',
+  'Magnificent!',
+  'Impressive!',
+  'Stellar Work!',
+  'You Got It!',
+  'Perfect!',
+];
+
+const getWinText = () => {
+  const rng = seedrandom(getDayDiff(new Date()).toString());
+  const idx = Math.floor(rng() * winText.length);
+  return winText[idx];
+};
+
+export { getWordOfTheDay, getDayDiff as getDayOfYear, isCharInWord, isWordValid, getWinText };
