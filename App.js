@@ -4,6 +4,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { useState } from 'react';
 import tamaguiConfig from './tamagui.config';
 import MainScreen from './src/screens/MainScreen';
+import { GameProvider } from './src/contexts/GameContext';
 
 export default function App() {
   const [isDark, setIsDark] = useState(false);
@@ -13,7 +14,9 @@ export default function App() {
       <TamaguiProvider config={tamaguiConfig}>
         <Theme name={isDark ? 'dark' : 'light'}>
           <StatusBar style={isDark ? 'light' : 'dark'} />
-          <MainScreen isDark={isDark} setIsDark={setIsDark} />
+          <GameProvider>
+            <MainScreen isDark={isDark} setIsDark={setIsDark} />
+          </GameProvider>
         </Theme>
       </TamaguiProvider>
     </SafeAreaProvider>

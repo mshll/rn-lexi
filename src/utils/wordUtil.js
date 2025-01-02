@@ -1,5 +1,6 @@
 import seedrandom from 'seedrandom';
 import { five_char_words } from '../data/words';
+import { format } from 'date-fns';
 
 let cached_date = new Date();
 let cached_idx = -1;
@@ -11,6 +12,27 @@ let cached_idx = -1;
  */
 const getDayDiff = (date) => {
   return Math.floor((date.valueOf() - new Date(2000, 0, 0).valueOf()) / (1000 * 60 * 60 * 24));
+};
+
+/**
+ * Converts a day number back to a Date object
+ * @param dayNumber The number of days since 01/01/2000
+ * @returns The corresponding Date object
+ */
+const dayNumberToDate = (dayNumber) => {
+  const date = new Date(2000, 0, 0);
+  date.setDate(date.getDate() + dayNumber);
+  return date;
+};
+
+/**
+ * Formats a day number into a readable date string
+ * @param dayNumber The number of days since 01/01/2000
+ * @returns A formatted date string (e.g., "Feb 15, 2024")
+ */
+const formatDayNumber = (dayNumber) => {
+  const date = dayNumberToDate(dayNumber);
+  return format(date, 'MMM d, yyyy');
 };
 
 /**
@@ -40,21 +62,28 @@ const isCharInWord = (guess, ans) => {
 };
 
 /**
- * Based on the current day of the year, returns a pseudorandom word from our word bank.
- *
- * @returns The "word of the day" -- which is a pseudorandomly selected word.
+ * Based on the provided day number, returns a pseudorandom word from our word bank.
+ * If no day is provided, uses the current day.
+ * @param {number} [specificDay] - Optional specific day number to get word for
+ * @returns The word for the specified day
  */
-const getWordOfTheDay = () => {
+const getWordOfTheDay = (specificDay) => {
   const date = new Date();
+  const dayNumber = specificDay || getDayDiff(date);
 
-  if (isSameDate(date) && cached_idx !== -1) {
+  if (!specificDay && isSameDate(date) && cached_idx !== -1) {
     return five_char_words[cached_idx];
   }
 
+  if (specificDay) {
+    const rng = seedrandom(dayNumber.toString());
+    return five_char_words[Math.floor(rng() * five_char_words.length)];
+  }
+
   cached_date = date; // Cache the date
-  const rng = seedrandom(getDayDiff(date).toString());
+  const rng = seedrandom(dayNumber.toString());
   let idx = Math.floor(rng() * five_char_words.length);
-  cached_idx = idx; // Cache the index.
+  cached_idx = idx; // Cache the index only for current day
   return five_char_words[idx];
 };
 
@@ -92,4 +121,4 @@ const getWinText = () => {
   return winText[idx];
 };
 
-export { getWordOfTheDay, getDayDiff as getDayOfYear, isCharInWord, isWordValid, getWinText };
+export { getWordOfTheDay, getDayDiff as getDayOfYear, isCharInWord, isWordValid, getWinText, formatDayNumber };

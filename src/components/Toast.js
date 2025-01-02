@@ -23,7 +23,7 @@ const Toast = ({ message, show, persistent = false }) => {
           borderRadius="$4"
           position="absolute"
           bottom="100%"
-          marginBottom="$5"
+          marginBottom="$2.5"
           alignSelf="center"
           zIndex={1}
         >
